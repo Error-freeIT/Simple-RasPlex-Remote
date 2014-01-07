@@ -1,6 +1,7 @@
 Simple-RasPlex-Remote
-Created by: Michael Page
 =====================
+Created by: Michael Page
+
 
 Control RasPlex from any device with a web browser.
 
