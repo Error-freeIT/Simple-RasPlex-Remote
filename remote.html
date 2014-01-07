@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var volume = 50;			
+		$("area").click(function() {
+			if (this.id.indexOf("volume") === 0) {
+				if (this.id == "volumeUp") {
+					if (volume < 100) {volume += 10;}
+				} else if (this.id == "volumeDown") {
+					if (volume > 0) {volume -= 10;}
+				}
+				jQuery(this).attr("cmd","application/setVolume?level=" + volume);
+			}									
+			var server = $("#server").val();
+			var client = $("#client").val();			
+			var baseUrl = "http://" + server + ":32400/system/players/" + client + "/";			
+			var command = jQuery(this).attr('cmd');
+			$.get(baseUrl + command).error(function() {
+				alert('Plex is not responding, troubleshooting tips:\n1) Veify server and client addresses\n2) Check network connectivity\n3) Reboot Plex Home Theater\n4) Reboot Plex Media Server');
+   			});
+		});
+	});
+	</script>
+	</head>
+	<body>
+		<form>
+		  <label for="server">Server hostname or IP address:</label><input id="server" type="text" placeholder="e.g. plex.local"><br />
+		  <label for="client">Client IP address:</label><input id="client" type="text" placeholder="e.g. 192.168.1.15">
+		</form>
+		<img src="buttons.png" style="display:block;margin-left:auto;margin-right:auto;" width="284" height="336" alt="Plex Remote" usemap="#buttonmap">
+		<map name="buttonmap">
+			<area cmd="navigation/back" shape="rect" coords="64,0,108,42" alt="back" title="Back">
+			<area cmd="navigation/moveUp" shape="rect" coords="120,0,162,42" alt="moveUp" title="Up">
+			<area cmd="navigation/contextMenu" shape="rect" coords="176,0,218,42" alt="contextMenu" title="Menu">
+			<area cmd="navigation/moveLeft" shape="rect" coords="64,54,108,96" alt="moveLeft" title="Left">
+			<area cmd="navigation/select" shape="rect" coords="120,54,162,96" alt="select" title="OK">
+			<area cmd="navigation/moveRight" shape="rect" coords="176,54,218,96" alt="moveRight" title="Right">
+			<area cmd="navigation/moveDown" shape="rect" coords="120,106,163,148" alt="moveDown" title="Down">
+			<area cmd="application/setVolume?level=50" id="volumeDown" shape="circle" coords="104,212,20" alt="volumeDown" title="Volume Down">
+			<area cmd="application/setVolume?level=50" id="volumeUp" shape="circle" coords="178,212,20" alt="volumeUp" title="volume Up">
+			<area cmd="playback/bigStepBack" shape="circle" coords="18,264,20" alt="bigStepBackward" title="Big Step Backward">
+			<area cmd="playback/stepBack" shape="circle" coords="76,264,20" alt="stepBack" title="Step Backward">
+			<area cmd="playback/play" shape="circle" coords="142,264,26" alt="play" title="Play/Pause">
+			<area cmd="playback/stepForward" shape="circle" coords="264,264,20" alt="stepForward" title="Step Forward">
+			<area cmd="playback/bigStepForward" shape="circle" coords="208,264,20" alt="bigStepForward" title="Big Step Forward">
+			<area cmd="navigation/toggleOSD" shape="circle" coords="106,316,20" alt="toggleOSD" title="Toggle OSD">
+			<area cmd="navigation/stop" shape="circle" coords="178,316,20" alt="stop" title="Stop">
+		</map>
+	</body>
+</html>
