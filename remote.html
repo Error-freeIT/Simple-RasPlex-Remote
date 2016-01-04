@@ -12,7 +12,7 @@
 				} else if (this.id == "volumeDown") {
 					if (volume > 0) {volume -= 10;}
 				}
-				jQuery(this).attr("cmd","application/setVolume?level=" + volume);
+				jQuery(this).attr("cmd","playback/setParameters?volume=" + volume);
 			}									
 			var server = $("#server").val();
 			var client = $("#client").val();			
