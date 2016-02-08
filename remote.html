@@ -19,7 +19,7 @@
 			var baseUrl = "http://" + server + ":32400/system/players/" + client + "/";			
 			var command = jQuery(this).attr('cmd');
 			$.get(baseUrl + command).error(function() {
-				alert('Plex is not responding, troubleshooting tips:\n1) Veify server and client addresses\n2) Check network connectivity\n3) Reboot Plex Home Theater\n4) Reboot Plex Media Server');
+				alert('Plex is not responding, troubleshooting tips:\n1) Verify server and client address\n2) Check network connectivity\n3) Reboot Plex Home Theater\n4) Reboot Plex Media Server');
    			});
 		});
 	});
